@@ -1,7 +1,7 @@
 
 let accessToken;
 const clientId = '17825e094a0d420cb9ccd0612776923a';
-const redirectUri = 'http://localhost:3000/'
+const redirectUri = 'mundane-card.surge.sh'
 
 const Spotify = {
     getAccessToken() {
