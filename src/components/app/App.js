@@ -4,6 +4,7 @@ import SearchBar from '../searchbar/SearchBar';
 import SearchResults from '../searchresults/SearchResults';
 import Playlist from '../playlist/Playlist';
 import Spotify from '../../util/Spotify';
+import PlaylistList from '../playlistList/PlaylistList';
 
 class App extends React.Component {
   constructor(props) {
@@ -64,6 +65,7 @@ class App extends React.Component {
                       onRemove={this.removeTrack}
                       onNameChange={this.updatePlaylistName}
                       onSave={this.savePlaylist} />
+            <PlaylistList />
           </div>
         </div>
       </div>
