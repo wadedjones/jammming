@@ -8,22 +8,31 @@ class PlaylistList extends React.Component {
         this.state = {
             playlistKey: []
         };
+        this.addPlaylist = this.addPlaylist.bind(this);
+    }
+    addPlaylist(playlistId) {
+        this.props.addPlaylist(playlistId)
     }
     componentDidMount() {
         Spotify.getUserPlaylists().then(response => {
             this.setState({playlistKey: response})
-        }).then(console.log(this.state.playlistKey))
+        });
     }
     render() {
         return (
             <div className="PlaylistList">
-                <div className="title">
-                    Local Playlists
-                </div>
-                <div>
+                <h2>Local Playlists</h2>
+                <div className="playlistResults">
                     {
                         this.state.playlistKey?.map(playlist => {
-                            return <div key={playlist.id}>{playlist.name}</div>
+                            return (
+                                <div className="trackInfo">
+                                    <div key={playlist.id}>
+                                        <h3>{playlist.name}</h3>
+                                    </div>
+                                    <button className="buttonAdd" onClick={() => this.addPlaylist(playlist.id)}>+</button>
+                                </div>
+                            )
                         })
                     }
                 </div>

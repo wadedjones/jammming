@@ -25,7 +25,7 @@ const Spotify = {
     },
     getUserId() {
         if (userId) {
-            console.log(userId)
+            //console.log(userId)
             return userId;
         }
         const accessToken = Spotify.getAccessToken();
@@ -34,7 +34,7 @@ const Spotify = {
         ).then(response => response.json()
         ).then(jsonResponse => {
             userId = jsonResponse.id;
-            console.log(userId)
+            //console.log(userId)
             return userId;
         });
     },
@@ -51,6 +51,7 @@ const Spotify = {
             if (!jsonResponse.tracks) {
                 return [];
             }
+            console.log(jsonResponse)
             return jsonResponse.tracks.items.map(track => ({
                 id: track.id,
                 name: track.name,
@@ -99,6 +100,25 @@ const Spotify = {
             //console.log(playlistArr);
             return playlistArr;
         })
+    },
+    getPlaylistTracks(playlistId) {
+        //const userId = Spotify.getUserId();
+        const accessToken = Spotify.getAccessToken();
+        const headers = {Authorization: `Bearer ${accessToken}`};
+        return fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, {
+            headers: headers,
+            method: 'GET'
+        }).then(response => response.json()
+        ).then(jsonResponse => {
+            console.log(jsonResponse)
+            return jsonResponse.items.map(track => ({
+                id: track.track.id,
+                name: track.track.name,
+                artist: track.track.artists[0].name,
+                album: track.track.album.name,
+                uri: track.track.uri
+            }));
+        });
     }
 }
 
