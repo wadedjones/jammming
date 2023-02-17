@@ -26,7 +26,7 @@ class PlaylistList extends React.Component {
                     {
                         this.state.playlistKey?.map(playlist => {
                             return (
-                                <div className="trackInfo">
+                                <div className="trackInfo" key={playlist.id}>
                                     <div key={playlist.id}>
                                         <h3>{playlist.name}</h3>
                                     </div>

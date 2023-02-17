@@ -53,6 +53,16 @@ class App extends React.Component {
     });
   }
   addPlaylist(playlistId) {
+    /*Spotify.getUserPlaylists().then(playlistArr => {
+      playlistArr?.map(name => {
+        console.log(playlistId === name.id)
+        if (name.id === playlistId) {
+          this.setState({playlistName: name.name})
+        }
+      })
+    }
+    )*/
+    //this.setState({playlistName: pl})
     this.setState({playlistTracks: []});
     Spotify.getPlaylistTracks(playlistId).then(tracks => {
       console.log(tracks);
